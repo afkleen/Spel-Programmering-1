@@ -1,4 +1,5 @@
 import random
+<<<<<<< HEAD
 
 namn = input("Vad ska din gubbe heta? -->")
 
@@ -35,3 +36,11 @@ def main():
     if  == "Krigare":
         Spelare = Krigare()
 
+=======
+print("Hej11")
+
+print("Nu skriver cHARLIE")
+# aaa
+print('bich ass')
+print('hor unge334487')
+>>>>>>> 311b997db5f3ce641ca6e7939d4e0dc8c87b902d
