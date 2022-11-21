@@ -36,25 +36,63 @@ class Ninja():
 
 class Monster_Armin():
     def __init__(self):
-        self.hp = 444
+        self.namn = "Dunder Armin"
+        self.hp = 75
+        self.styrka = 50
+
+class Monster_Romanian_Final_Boss():
+    def __init__(self):
+        self.namn = "Romanian Final Boss "
+        self.hp = 1250
+        self.styrka = 175
+
+    def __str__(self):
+        return f"Acest șef are {self.styrka} de putere și {1250} HP, el este regele!"
+
+        #bild på romanian final boss
+
+#---------------------------------
+
+# Fällor -------------------------
+
 
 #---------------------------------
 
 # Dörr Funktioner ----------------
 
 def monster_dörr():
-    print("AjAj ett storst monster dök upp?! Akta")
-    monster_dörr_val = input("Vill du springa tryck  ")
+    while True:
+        print("AjAj ett storst monster dök upp?! Akta")
+        monster_dörr_val = input("Vill du springa och är en pussy, TRYCK 1, annars om du är en riktig TOP G och vill fightas, TRYCK 2!")
 
+        if monster_dörr_val == "1":
+            print("din rotta, men spring för livet då?!")
+            överlevnads_chans = random.randint(0,100)
+            if överlevnads_chans > 50:
+                print("Du överlevde och klarade springa ifrån monstret.")
+                continue
+            else:
+                print("du dog din sopa")
+                break
+        elif monster_dörr_val == "2":
+            print("TOP G stannar och fightar och inte flightar, hoppas du vinner dock!")
+            strid(spelare, random.choice(Monster_Armin))
 
+#---------------------------------
 
+# Strid/fight Funktioner ---------
 
+def strid(kar, mon):
+    print("Slåss nu")
+
+#.-------------------------------
 
 namn = input("Vad ska din gubbe heta? -->")
 
 KaraktärVal = input("Ska din karaktär vara en [Krigare], [Trollkarl] eller [Ninja]")
 
 KaraktärVal = KaraktärVal.lower()
+
 
 if KaraktärVal == "krigare":
     spelare = Krigare(namn)
@@ -65,6 +103,7 @@ elif KaraktärVal == "ninja":
 else:
     print("Du skrev fel")
 
+
 print(spelare)
 
 
@@ -73,6 +112,27 @@ if meny_val_1 == "1":
     print(f"{spelare.namn} går vidare")
 else:
     print("gå hem")
+
+meny_val_2 = input("Vad vill göras? Vill du gå vidare till din första utmaning, KLICKA DÅ 1. Om du vill kolla dina stats, KLICKA DÅ 2, och om du vill avsluta spelet, KLICKA 0")
+if meny_val_2 == "1":
+    print("Du har stött på 3 plötsliga dörrar. Välj att antagligen att gå VÄNSTER, HÖGER eller FRAMMÅT?!" )
+    vilken_dörr_1 = input("Vart vill du gå? -->")
+    vilken_dörr_1 = vilken_dörr_1.lower()
+
+    if vilken_dörr_1 == "vänster" or "höger" or "frammåt":
+        print(f"Du har gått {vilken_dörr_1}")
+        #lägg till kista och fälla
+        bakom_dörren = "Monster"
+        if bakom_dörren == "Monster":
+            #Lägg till monster
+            monster_dörr()
+
+    print("next")
+
+
+
+
+    
    
     
 
