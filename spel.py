@@ -73,10 +73,20 @@ def monster_dörr():
                 continue
             else:
                 print("du dog din sopa")
+                print("Spelet avslutas")
                 break
         elif monster_dörr_val == "2":
             print("TOP G stannar och fightar och inte flightar, hoppas du vinner dock!")
-            strid(spelare, random.choice(Monster_Armin))
+            strid(spelare,monster)
+
+def fälla_dörr():
+    while True:
+        print("Du har stött på en fälla. Akta dig!")
+        fälla = random.choice("Bear trap")
+        if fälla == "Bear trap":
+            print("Ajj, du gick in i en bear trap, Du tappade 20 hp")
+            spelare.hp - 20
+            
 
 #---------------------------------
 
@@ -90,9 +100,7 @@ def strid(kar, mon):
 namn = input("Vad ska din gubbe heta? -->")
 
 KaraktärVal = input("Ska din karaktär vara en [Krigare], [Trollkarl] eller [Ninja]")
-
 KaraktärVal = KaraktärVal.lower()
-
 
 if KaraktärVal == "krigare":
     spelare = Krigare(namn)
@@ -100,18 +108,18 @@ elif KaraktärVal == "trollkarl":
     spelare = Trollkarl(namn)
 elif KaraktärVal == "ninja":
     spelare = Ninja(namn)
+    
 else:
     print("Du skrev fel")
 
-
 print(spelare)
-
 
 meny_val_1 = input("Klicka 1 om du vill gå vidare eller klicka 2 om du vill avsluta spelet. -->")
 if meny_val_1 == "1":
     print(f"{spelare.namn} går vidare")
+    print("=================")
 else:
-    print("gå hem")
+    print("Nu avslutas spelet!!!")
 
 meny_val_2 = input("Vad vill göras? Vill du gå vidare till din första utmaning, KLICKA DÅ 1. Om du vill kolla dina stats, KLICKA DÅ 2, och om du vill avsluta spelet, KLICKA 0")
 if meny_val_2 == "1":
@@ -122,10 +130,12 @@ if meny_val_2 == "1":
     if vilken_dörr_1 == "vänster" or "höger" or "frammåt":
         print(f"Du har gått {vilken_dörr_1}")
         #lägg till kista och fälla
-        bakom_dörren = "Monster"
+        bakom_dörren = random.choice("Monster", "Kista", "Fälla")
         if bakom_dörren == "Monster":
             #Lägg till monster
             monster_dörr()
+        elif bakom_dörren == "Fälla":
+            fälla_dörr()
 
     print("next")
 
