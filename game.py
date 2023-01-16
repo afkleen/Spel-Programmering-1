@@ -24,7 +24,9 @@ class Krigare():
 
               HP:{self.hp}
 
-              Strenght:{self.styrka}"""
+              Strenght:{self.styrka}
+              
+              """
 
     # def ta_potion():
     #     self.potions -=1
@@ -39,7 +41,16 @@ class Trollkarl():
         self.inventory = ["HPotion", "SPotion"]
     
     def __str__(self):
-        return f"Det här är {self.namn} han är en Trollkarl och har {self.hp} hp och {self.styrka} styrka. {self.namn} är i level {self.level}"
+        return f"""
+              Klass: Trollkarl
+
+              Level:{self.level}
+
+              HP:{self.hp}
+
+              Strenght:{self.styrka}
+              
+              """
 
 #---------------------------------
 
@@ -116,7 +127,7 @@ def dörr(Spelare):
 def intro():
     namn = input("Din gubbes namn: ")
 
-    KaraktärVal = input("Ska din karaktär vara en [Krigare], [Trollkarl] eller [Ninja]")
+    KaraktärVal = input("Ska din karaktär vara en | Krigare | eller | Trollkarl | ")
 
     KaraktärVal = KaraktärVal.lower()
 
@@ -200,12 +211,24 @@ def meny(Spelare):
     Tryck | 2 | för att öppna din ryggsäck!
     Tryck | 3 | för att gå vidare
     Tryck | 0 | för att avsluta spelet.
+
+    Ditt val --> 
     """)
 
-    if meny_val == "1":
-        print("KOLLAR STATS")
-        stats(Spelare)
-    elif meny_val == "2":
+
+    while True
+        if meny_val == "1":
+            print("KOLLAR STATS")
+            stats(Spelare)
+        elif meny_val == "2":
+            print(Spelare.inventory)
+        elif meny_val == "0":
+            print("Spelet avslutas")
+            exit()
+        else:
+            print("går vidare")
+
+
 
 #.-------------------------------
 
@@ -256,6 +279,8 @@ def main():
         sleep(1.5)
         print("hejdå")
         exit()
+
+    meny(Spelare)
 
         
     
