@@ -17,7 +17,14 @@ class Krigare():
         self.inventory = ["HPotion", "SPotion"]
 
     def __str__(self):
-        return f"Det här är {self.namn} han är en Krigare och har {self.hp} hp och {self.styrka} styrka. {self.namn} är i level {self.level}"
+        return f"""
+              Klass: Krigare
+
+              Level:{self.level}
+
+              HP:{self.hp}
+
+              Strenght:{self.styrka}"""
 
     # def ta_potion():
     #     self.potions -=1
@@ -66,7 +73,9 @@ class Monster_Romanian_Final_Boss():
 
 # MENY VAL -----------------------
 
-def dörr():
+def dörr(Spelare):
+
+    print("DU GÅR IN I GROTTAN OCH STÖTER PÅ TRE DÖRRAR!!!")
     
     dörrval = input("vill du gå 1. vänster 2. höger 3. frammåt -->")
     dörrval = dörrval.lower
@@ -179,11 +188,30 @@ def kista(Spelare):
         elif randomitem == "Svärd":
             print("Svärd")
 
+
+def stats(Spelare):
+    print(Spelare)
+
+def meny(Spelare):
+    meny_val = input("""
+    MENY
+
+    Tryck | 1 | för att kolla dina stats!
+    Tryck | 2 | för att öppna din ryggsäck!
+    Tryck | 3 | för att gå vidare
+    Tryck | 0 | för att avsluta spelet.
+    """)
+
+    if meny_val == "1":
+        print("KOLLAR STATS")
+        stats(Spelare)
+    elif meny_val == "2":
+
 #.-------------------------------
 
 
 def main():
-
+    
     print("""
     
     Du går själv i skogen och är ute på äventyr. 
@@ -228,29 +256,35 @@ def main():
         sleep(1.5)
         print("hejdå")
         exit()
+
         
     
-    while Spelare.level < 10:
-        print("""
-        Längre in går du i grottan och stöter på tre dörrar,
-        Tryck | 1 | för att öppna vänstra dörren
-        Tryck | 2 | för dörren rakt fram &
-        Tryck | 3 | för att öppna höger
-        För att springa ut tryck | 0 |
-        """)
-
-        dörr_val = input("Vart vill du gå? -->")
-
-        if dörr_val == "0":
-            print("Jag han ut; WHEWWWWW!")
-            print("SPELET AVSLUTAS")
-            exit()
-        else:
-            random_dörr
-
-
+    # while Spelare.level < 10 or Spelare.hp <= 0:
+    #     Spelare = dörr(Spelare)
        
 main()
+
+# print("""
+# Längre in går du i grottan och stöter på tre dörrar,
+# Tryck | 1 | för att öppna vänstra dörren
+# Tryck | 2 | för dörren rakt fram &
+# Tryck | 3 | för att öppna höger
+# För att springa ut tryck | 0 |
+# """)
+
+# dörr_val = input("Vart vill du gå? -->")
+
+# if dörr_val == "0":
+#     print("Jag han ut; WHEWWWWW!")
+#     print("SPELET AVSLUTAS")
+#     exit()
+# else:
+#     random_dörr = random.choice(["fälla", "kista"])
+
+#     if random_dörr == "fälla":
+#         fälla(Spelare)
+#     elif random_dörr == "kista":
+#         kista(Spelare)
 
 
 # namn = input("Vad ska din gubbe heta? -->")
