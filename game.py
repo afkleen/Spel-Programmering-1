@@ -91,8 +91,7 @@ def dörr(Spelare):
     dörrval = input("vill du gå 1. vänster 2. höger 3. frammåt -->")
     dörrval = dörrval.lower
 
-    if dörrval == [1,2,3]:
-        random.choice[1,2,3]
+    
     if True:
         match dörrval:
 
@@ -107,6 +106,7 @@ def dörr(Spelare):
             case "3":
                 print("du stötte på en kista")
                 Spelare = kista()
+        return Spelare
 
 
     
@@ -204,7 +204,9 @@ def stats(Spelare):
     print(Spelare)
 
 def meny(Spelare):
-    meny_val = input("""
+
+    while True:
+        print("""
     MENY
 
     Tryck | 1 | för att kolla dina stats!
@@ -214,19 +216,21 @@ def meny(Spelare):
 
     Ditt val --> 
     """)
+        meny_val = input()
 
-
-    while True
         if meny_val == "1":
             print("KOLLAR STATS")
             stats(Spelare)
         elif meny_val == "2":
             print(Spelare.inventory)
+        elif meny_val == "3":
+            print("går vidare")
+            dörr(Spelare )
         elif meny_val == "0":
             print("Spelet avslutas")
             exit()
         else:
-            print("går vidare")
+            print("välj rätt din sopa")
 
 
 
@@ -284,8 +288,8 @@ def main():
 
         
     
-    # while Spelare.level < 10 or Spelare.hp <= 0:
-    #     Spelare = dörr(Spelare)
+    while Spelare.level < 10 or Spelare.hp <= 0:
+        Spelare = dörr(Spelare)
        
 main()
 
