@@ -88,25 +88,41 @@ def dörr(Spelare):
 
     print("DU GÅR IN I GROTTAN OCH STÖTER PÅ TRE DÖRRAR!!!")
     
-    dörrval = input("vill du gå 1. vänster 2. höger 3. frammåt -->")
-    dörrval = dörrval.lower
+
+
+    while True:
+
+        Monster = Monster_Armin
+        dörrval = input("vill du gå 1. vänster 2. höger 3. frammåt -->")
+        dörrval = dörrval.lower
+
+        if dörrval == "vänster" or "höger" or "frammåt":
+            random.choice[(strid(Spelare, Monster), fälla(Spelare), kista(Spelare))]
+            
+        
 
     
-    if True:
-        match dörrval:
+ 
+ 
+ 
+ 
+ 
+ 
+    # if True:
+    #     match dörrval:
 
-            case "1":
-                print("du kommer nu kriga")
-                Spelare = strid(Spelare, Monster)
+    #         case "1":
+    #             print("du kommer nu kriga")
+    #             Spelare = strid(Spelare, Monster)
 
-            case "2":
-                print("du gick på en fälla")
-                Spelare = fälla()
+    #         case "2":
+    #             print("du gick på en fälla")
+    #             Spelare = fälla()
 
-            case "3":
-                print("du stötte på en kista")
-                Spelare = kista()
-        return Spelare
+    #         case "3":
+    #             print("du stötte på en kista")
+    #             Spelare = kista()
+    #     return Spelare
 
 
     
@@ -131,12 +147,18 @@ def intro():
 
     KaraktärVal = KaraktärVal.lower()
 
-    if KaraktärVal == "krigare":
-        Spelare = Krigare(namn)
-    elif KaraktärVal == "trollkarl":
-        Spelare = Trollkarl(namn)
-    else:
-        print("Du skrev fel")
+    while True:
+        if KaraktärVal == "krigare":
+            Spelare = Krigare(namn)
+            break
+        elif KaraktärVal == "trollkarl":
+            Spelare = Trollkarl(namn)
+            break
+        else:
+            print("du skrev fel")
+
+# FIXAAAAAAAAAAAAAAAAAAAAAAAA IMOIRRRRRRRRRRRRRRRRRRRRRRRGONNNNNNNNNNNNNNNNNNNNNNNNNnnnnnnn
+            
 
     print(Spelare)
     return Spelare
@@ -144,8 +166,10 @@ def intro():
 
 # Strid/fight Funktioner ---------
 
-def strid(Spelare, monster):
-    print("Slåss nu")
+def strid(Spelare, Monster):
+    Monster = Monster_Armin
+    
+    print("Vill du slåss eller fly? | 1 | för sloss, | 2 ")
     Spelare.hp -= 5
 
 def fälla(Spelare):
@@ -225,7 +249,7 @@ def meny(Spelare):
             print(Spelare.inventory)
         elif meny_val == "3":
             print("går vidare")
-            dörr(Spelare )
+            break
         elif meny_val == "0":
             print("Spelet avslutas")
             exit()
