@@ -417,7 +417,7 @@ def strid(Spelare):
         Spelare.hp = 0
     elif fly == 2:
         return Spelare
-    while Spelare.hp > 0 and monster.hp > 0
+    while Spelare.hp > 0 and monster.hp > 0:
     if val == 1:
         print(f"du valde valde strid {monster}")
         while Spelare.hp > 0 and monster.hp > 0:
