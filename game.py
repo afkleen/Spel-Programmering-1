@@ -165,13 +165,6 @@ def intro():
 
 
 # Strid/fight Funktioner ---------
-
-def strid(Spelare, Monster):
-    Monster = Monster_Armin
-    
-    print("Vill du slåss eller fly? | 1 | för sloss, | 2 ")
-    Spelare.hp -= 5
-
 def fälla(Spelare):
     
     while True:
@@ -313,7 +306,7 @@ def main():
         
     
     while Spelare.level < 10 or Spelare.hp <= 0:
-        Spelare = dörr(Spelare)
+        Spelare = strid(Spelare)
        
 main()
 
@@ -412,3 +405,37 @@ main()
 #         elif monster_dörr_val == "2":
 #             print("TOP G stannar och fightar och inte flightar, hoppas du vinner dock!")
 #             strid(spelare, random.choice(Monster_Armin))
+
+def strid(Spelare):
+    monster = Monster_Armin()
+
+    val: (input('du öppnar dörren och stöter på ett monster, vad vill du göra?  | 1.slåss |  | 2.fly 50/50 odds att lyckas |'))
+    if val == 2:
+        fly = random.choice[1, 2]
+
+    elif fly == 1:
+        Spelare.hp = 0
+    elif fly == 2:
+        return Spelare
+    while Spelare.hp > 0 and monster.hp > 0
+    if val == 1:
+        print(f"du valde valde strid {monster}")
+        while Spelare.hp > 0 and monster.hp > 0:
+
+            attack = input(
+                """välj en attack
+             ______________________________________   
+            |                   |                 |
+            | (1) Light attack  | (2)Heavy attack |
+            |                   |                 |
+            |___________________|_________________|
+            
+            """
+
+            )
+        if attack == 1:
+            monster.hp = - 100
+            print(f"du träffade monsret och monstret har {monster.hp} hp kvar")
+            Spelare.hp = - range(1, 100)
+            print(f"du blev träffad och har {Spelare.hp} hp kvar")
+
