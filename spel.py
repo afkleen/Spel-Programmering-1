@@ -244,7 +244,7 @@ def kista(Spelare):
             if potion_val == "1":
                 print("SLUURPPP... ")
                 Spelare = Spelare.hp + 100
-                print(f"Du fick precis 100 mer hp. Du har nu {int(Spelare.hp)} hp")
+                print(Spelare)
             elif potion_val == "2":
                 print('ZZZIIIIIIIIIIIIPp... "lägger ner i ryggsäcken"')
                 Spelare.inventory.append("HPotion")
@@ -360,6 +360,7 @@ def main():
 
     while Spelare.level < 3 or Spelare.hp > 0:
         dörr(Spelare)
+        meny(Spelare)
 
     print("DU VANN SPELAET")
 
