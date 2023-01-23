@@ -187,6 +187,7 @@ def intro():
             break
         else:
             print("du skrev fel")
+            continue
 
 # FIXAAAAAAAAAAAAAAAAAAAAAAAA IMOIRRRRRRRRRRRRRRRRRRRRRRRGONNNNNNNNNNNNNNNNNNNNNNNNNnnnnnnn
 
@@ -197,37 +198,55 @@ def intro():
 # Strid/fight Funktioner ---------
 
 def strid(Spelare, Monster):
-    while Monster.hp > 0 and Spelare.hp > 0:
-        val = (input(
+    strid_val = (input(
             'du öppnar dörren och stöter på ett monster, vad vill du göra?  | 1.slåss |  '))
-        if val == "1":
-            print(f"du valde valde strid {Monster}")
-            while True:
-                if Spelare.hp < 0:
-                    exit()
-                elif Monster.hp < 0:
-                    print("grattis du vann striden")
+    if strid_val == "1":
+        while Monster.hp > 0 and Spelare.hp > 0:
+            val = (input("""
+            | 1 | SLÅ IGEN
+            | 2 | SPRING"""))
+            if val == "1":
+                print(f"du valde valde strid {Monster}")
+                while True:
+                    if Spelare.hp < 0:
+                        exit()
+                    elif Monster.hp < 0:
+                        print("grattis du vann striden")
 
-                    return Spelare
+                        return Spelare
+                        
+                    attack = input(
+                        """välj en attack
+                    ______________________________________   
+                    |                   |                 |
+                    | (1) Light attack  | (2)Heavy attack |
+                    |                   |                 |
+                    |___________________|_________________|
                     
-                attack = input(
-                    """välj en attack
-                ______________________________________   
-                |                   |                 |
-                | (1) Light attack  | (2)Heavy attack |
-                |                   |                 |
-                |___________________|_________________|
-                
-                """
+                    """
 
-                )
-                break
+                    )
+                    break
+            elif val == "2":
+                fly_chans = random.randint(1,2)
+                if fly_chans == 1:
+                    print("MONSTRET HAN IKAPP, DU DOG")
+                    exit()
+                elif fly_chans == 2:
+                    print("DU SPRANG IFRÅN MONSTRET OCH KLARADE DIG.")
+                    break
 
             if attack == "1":
                 Monster.hp -= Spelare.styrka
                 print(f"du träffade monsret och monstret har {Monster.hp} hp kvar")
                 Spelare.hp -= Monster.styrka
                 print(f"Monstret träffade dig och du har {Spelare.hp} hp kvar")
+            elif attack == "2":
+                crit_chans_spelare = random.randint(0.7,2)
+                crit_chans_monster = random.randint(0.8,1.7)
+                Monster.hp -= Spelare.styrka * crit_chans_spelare
+                Spelare.hp -= Monster.styrka * crit_chans_monster
+                print(f"")
 
             if Spelare.speed > 30:
 
@@ -239,7 +258,10 @@ def strid(Spelare, Monster):
                 elif hitrate == 2:
                     print("du duckade och monstret missade sin attack")
 
-    print("grattis")
+        print("grattis")
+        print("du gick nu upp en level")
+        Spelare.level += 1
+
     return Spelare
 
 
