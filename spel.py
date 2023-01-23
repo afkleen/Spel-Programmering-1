@@ -5,6 +5,8 @@ from time import sleep
 # sleep(2)
 # print("hallå ")
 
+inventory = ["HPotion"]
+
 
 # Olika Karaktärsklasser ----------
 class Krigare():
@@ -13,7 +15,7 @@ class Krigare():
         self.styrka = 100
         self.hp = 550
         self.level = 1
-        self.inventory = ["HPotion", "SPotion"]
+        self.inventory = inventory
         self.speed = 25
 
     def __str__(self):
@@ -30,9 +32,33 @@ class Krigare():
               
               """
 
-    # def ta_potion():
-    #     self.potions -=1
-    #     self.hp += 10
+
+
+def ta_potion(Spelare):
+
+    ta_potion = input("""
+        Vill du ta en potion?
+        | 1 | JA, EN HEALTH POTION
+        | 2 | NEJ
+        
+        -->""")
+
+   
+    if ta_potion == "1":
+        if "HPotion" in Spelare.inventory:
+            Spelare.inventory = Spelare.inventory.remove("HPotion")
+            Spelare.hp += 100
+            print("SLUUUUUUUUUUUUUURP....")
+            print("Du drack en HEALTH potion")
+        else:
+            print("Du har inga potions")
+    elif ta_potion == "2":
+        pass
+    else: 
+        print("du hann inte!")
+    
+    return Spelare
+            
 
 
 class Trollkarl():
@@ -41,7 +67,7 @@ class Trollkarl():
         self.styrka = 175
         self.hp = 350
         self.level = 1
-        self.inventory = ["HPotion", "SPotion"]
+        self.inventory = inventory
         self.speed = 60
 
     def __str__(self):
@@ -109,7 +135,7 @@ def dörr(Spelare):
         kista(Spelare)
         
     elif dörrval == "3":
-        Spelare = fälla(Spelare)
+        fälla(Spelare)
         
 
         # if True:
@@ -152,7 +178,9 @@ def intro():
 
     while True:
         if KaraktärVal == "krigare":
+            inventory = ["HPotion"]
             Spelare = Krigare(namn)
+            inventory = Krigare(inventory)
             break
         elif KaraktärVal == "trollkarl":
             Spelare = Trollkarl(namn)
@@ -210,9 +238,11 @@ def strid(Spelare, Monster):
                     print(f"du blev träffad och har {Spelare.hp} hp kvar")
                 elif hitrate == 2:
                     print("du duckade och monstret missade sin attack")
+
+    print("grattis")
     return Spelare
 
-    print("GRAAAAAAAAAAAAAAAAAAAAAAAAAAAATIS")
+
 
 
 def fälla(Spelare):
@@ -222,7 +252,7 @@ def fälla(Spelare):
     fälla = "Bear-trap"
     if fälla == "Bear-trap":
         print("Ajj, du gick in i en bear trap, Du tappade 20 hp")
-        Spelare = Spelare.hp - 20
+        Spelare.hp = Spelare.hp - 20
 
     return Spelare
 
@@ -294,6 +324,7 @@ def meny(Spelare):
             stats(Spelare)
         elif meny_val == "2":
             print(Spelare.inventory)
+            ta_potion(Spelare)
         elif meny_val == "3":
             print("går vidare")
             break
