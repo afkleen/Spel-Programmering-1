@@ -5,8 +5,18 @@ from time import sleep
 # sleep(2)
 # print("hallå ")
 
-inventory = ["HPotion"]
-
+class Item():
+    def __init__(self):
+        
+        self.type=["magic","sword"]
+        self.rarity=["vanlig","episk","legendarisk"]
+        self.damage=0
+        if self.rarity=="vanlig":
+            self.damage+= 100
+        elif self.rarity=="episk":
+            self.damage+= 200
+        else:
+            self.damage+= 300
 
 # Olika Karaktärsklasser ----------
 class Krigare():
@@ -15,7 +25,7 @@ class Krigare():
         self.styrka = 100
         self.hp = 550
         self.level = 1
-        self.inventory = inventory
+        self.inventory = ["INVENTORY:","HPotion","HPotion"]
         self.speed = 25
 
     def __str__(self):
@@ -46,7 +56,7 @@ def ta_potion(Spelare):
    
     if ta_potion == "1":
         if "HPotion" in Spelare.inventory:
-            Spelare.inventory = Spelare.inventory.remove("HPotion")
+            Spelare.inventory == Spelare.inventory.remove("HPotion")
             Spelare.hp += 100
             print("SLUUUUUUUUUUUUUURP....")
             print("Du drack en HEALTH potion")
@@ -67,7 +77,7 @@ class Trollkarl():
         self.styrka = 175
         self.hp = 350
         self.level = 1
-        self.inventory = inventory
+        self.inventory = ["INVENTORY:","HPotion","HPotion"]
         self.speed = 60
 
     def __str__(self):
@@ -178,9 +188,7 @@ def intro():
 
     while True:
         if KaraktärVal == "krigare":
-            inventory = ["HPotion"]
             Spelare = Krigare(namn)
-            inventory = Krigare(inventory)
             break
         elif KaraktärVal == "trollkarl":
             Spelare = Trollkarl(namn)
@@ -242,11 +250,12 @@ def strid(Spelare, Monster):
                 Spelare.hp -= Monster.styrka
                 print(f"Monstret träffade dig och du har {Spelare.hp} hp kvar")
             elif attack == "2":
-                crit_chans_spelare = random.randint(0.7,2)
-                crit_chans_monster = random.randint(0.8,1.7)
+                crit_chans_spelare = random.uniform(0.7,2)
+                crit_chans_monster = random.uniform(0.8,1.7)
                 Monster.hp -= Spelare.styrka * crit_chans_spelare
+                print(f"| Du träffade monstret och han har {Monster.hp} kvar. Du hade en damage multiplyer på {crit_chans_spelare}|")
                 Spelare.hp -= Monster.styrka * crit_chans_monster
-                print(f"")
+                print(f"| {Monster} prickade dig och du har {Spelare.hp} kvar. Monstret hade en damage multiplyer på {crit_chans_monster}")
 
             if Spelare.speed > 30:
 
@@ -281,7 +290,7 @@ def fälla(Spelare):
 
 def kista(Spelare):
 
-    items = ["HPotion", "SPotion"]
+    items = ["HPotion"]
     print("Du stöter på en kista.")
     val_1 = input("TRYCK | 1 | för att öppna kistan")
     if val_1 == "1":
@@ -302,23 +311,23 @@ def kista(Spelare):
                 Spelare.inventory.append("HPotion")
             return Spelare
         # ---------------------------
-        elif randomitem == "SPotion":
-            print("du fick en STRENGTH potion")
-            potion_val = input("""
-            Tryck | 1 | om du vill dricka
+        # elif randomitem == "SPotion":
+        #     print("du fick en STRENGTH potion")
+        #     potion_val = input("""
+        #     Tryck | 1 | om du vill dricka
             
-            Tryck | 2 | om du vill lägga den i inventoryt
-            """)
-            if potion_val == "1":
-                print("SLUURPPP... ")
-                Spelare = Spelare.styrka + 100
-                print(f"Du fick precis 100 mer styrka. Du har nu {int(Spelare.styrka)} styrka")
+        #     Tryck | 2 | om du vill lägga den i inventoryt
+        #     """)
+        #     if potion_val == "1":
+        #         print("SLUURPPP... ")
+        #         Spelare = Spelare.styrka + 100
+        #         print(f"Du fick precis 100 mer styrka. Du har nu {int(Spelare.styrka)} styrka")
 
-            elif potion_val == "2":
-                print('ZZZIIIIIIIIIIIIPp... "lägger ner i ryggsäcken"')
-                Spelare.inventory.append("SPotion")
-                print(Spelare.inventory)
-            return Spelare
+        #     elif potion_val == "2":
+        #         print('ZZZIIIIIIIIIIIIPp... "lägger ner i ryggsäcken"')
+        #         Spelare.inventory.append("SPotion")
+        #         print(Spelare.inventory)
+            # return Spelare
         # ---------------------------
 
 
