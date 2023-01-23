@@ -124,7 +124,7 @@ def dörr(Spelare):
         pass
 
     Monster = Monster_Armin()
-    dörrval = input("""
+    dörrinput = input("""
     _______________________
     Vilken dörr väljer du?  |
     | 1 | HÖGER             |
@@ -134,14 +134,15 @@ def dörr(Spelare):
 
     """)
 
-    dörrval == random.randint(1,3)
-    if dörrval == "1":
+    dörrar = [1,2,3]
+    dörrval = random.choice(dörrar)
+    if dörrval == 1:
         Spelare = strid(Spelare, Monster)
         
-    elif dörrval == "2":
+    elif dörrval == 2:
         kista(Spelare)
         
-    elif dörrval == "3":
+    elif dörrval == 3:
         fälla(Spelare)
 
 
@@ -161,12 +162,14 @@ def dörr(Spelare):
 def intro():
     namn = input("Din gubbes namn: ")
 
-    KaraktärVal = input(
-        "Ska din karaktär vara en | Krigare | eller | Trollkarl | ")
 
-    KaraktärVal = KaraktärVal.lower()
+
+
 
     while True:
+        KaraktärVal = input(
+        "Ska din karaktär vara en | Krigare | eller | Trollkarl | ")
+        KaraktärVal = KaraktärVal.lower()
         if KaraktärVal == "krigare":
             Spelare = Krigare(namn)
             break
@@ -175,7 +178,7 @@ def intro():
             break
         else:
             print("du skrev fel")
-            continue
+
 
 
     print(Spelare)
@@ -306,7 +309,7 @@ def fälla(Spelare):
 
 
 def kista(Spelare):
-    items = ["HPotion"]
+    items = ["HPotion","Yxa"]
     print("Du stöter på en kista.")
     val_1 = input("TRYCK | 1 | för att öppna kistan")
     if val_1 == "1":
@@ -320,30 +323,28 @@ def kista(Spelare):
             """)
             if potion_val == "1":
                 print("SLUURPPP... ")
-                Spelare = Spelare.hp + 100
-                print(Spelare)
+                Spelare.hp = Spelare.hp + 100
+                print(f"{Spelare.hp} hp har du!")
             elif potion_val == "2":
                 print('ZZZIIIIIIIIIIIIPp... "lägger ner i ryggsäcken"')
                 Spelare.inventory.append("HPotion")
-    return Spelare
+        
         # ---------------------------
-        # elif randomitem == "SPotion":
-        #     print("du fick en STRENGTH potion")
-        #     potion_val = input("""
-        #     Tryck | 1 | om du vill dricka
-            
-        #     Tryck | 2 | om du vill lägga den i inventoryt
-        #     """)
-        #     if potion_val == "1":
-        #         print("SLUURPPP... ")
-        #         Spelare = Spelare.styrka + 100
-        #         print(f"Du fick precis 100 mer styrka. Du har nu {int(Spelare.styrka)} styrka")
+        elif randomitem == "Yxa":
+            print("du fick en Yxa")
+            potion_val = input("""
+            Tryck | 1 | om du vill ha den som main vapen
+            """)
+            if potion_val == "1":
+                print("Tjiiiiiing ")
+                Spelare.styrka = Spelare.styrka + 120
+                print(f"""Du fick precis 120 mer styrka.
+                """)
+                print(f"du har nu {Spelare.styrka} styrka!")
+            else: 
+                print("Ok. KASTAR BORT YXAN......")
 
-        #     elif potion_val == "2":
-        #         print('ZZZIIIIIIIIIIIIPp... "lägger ner i ryggsäcken"')
-        #         Spelare.inventory.append("SPotion")
-        #         print(Spelare.inventory)
-            # return Spelare
+    return Spelare
         # ---------------------------
 
 
