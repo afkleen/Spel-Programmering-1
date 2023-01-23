@@ -1,23 +1,6 @@
 import random
 from time import sleep
 
-# print("hej")
-# sleep(2)
-# print("hallå ")
-
-class Item():
-    def __init__(self):
-        
-        self.type=["magic","sword"]
-        self.rarity=["vanlig","episk","legendarisk"]
-        self.damage=0
-        if self.rarity=="vanlig":
-            self.damage+= 100
-        elif self.rarity=="episk":
-            self.damage+= 200
-        else:
-            self.damage+= 300
-
 # Olika Karaktärsklasser ----------
 class Krigare():
     def __init__(self, namn):
@@ -53,7 +36,6 @@ def ta_potion(Spelare):
         
         -->""")
 
-   
     if ta_potion == "1":
         if "HPotion" in Spelare.inventory:
             Spelare.inventory == Spelare.inventory.remove("HPotion")
@@ -104,7 +86,10 @@ class Monster_Armin():
     def __init__(self):
         self.namn = "Dunder Armin"
         self.hp = 600
-        self.styrka = 50
+        self.styrka = 75
+    def __str__(self):
+        return f"Dunder Armin"
+        
 
 
 class Monster_Romanian_Final_Boss():
@@ -125,19 +110,31 @@ class Monster_Romanian_Final_Boss():
 
 def dörr(Spelare):
 
-    print("DU GÅR IN I GROTTAN OCH STÖTER PÅ TRE DÖRRAR!!!")
+    print("""
+    I SLUTET AV GROTTAN STÖTER DU PÅ TRE DÖRRAR
+    """)
 
-    ångrasig = input("vad vill du göra fortsätta (1) eller gå tillbaka(2)")
+    ångrasig = input("""
+        | 1 | Fortsätt in
+        | 2 | Vänd om
+    """)
     if ångrasig == 2:
         return Spelare
     else: 
-        None
+        pass
 
     Monster = Monster_Armin()
-    dörrval = input("vill du gå 1. vänster 2. höger 3. frammåt -->")
+    dörrval = input("""
+    _______________________
+    Vilken dörr väljer du?  |
+    | 1 | HÖGER             |
+    | 2 | VÄNSTER           |
+    | 3 | FRAMMÅT           |
+    TTTTTTTTTTTTTTTTTTTTTTTT
 
-    # if dörrval == "vänster" or "höger" or "frammåt":
-    #     random.choice[(strid(Spelare, Monster), fälla(Spelare), kista(Spelare))]
+    """)
+
+    dörrval == random.randint(1,3)
     if dörrval == "1":
         Spelare = strid(Spelare, Monster)
         
@@ -146,23 +143,6 @@ def dörr(Spelare):
         
     elif dörrval == "3":
         fälla(Spelare)
-        
-
-        # if True:
-        #     match dörrval:
-
-        #         case "1":
-        #             print("du kommer nu kriga")
-        #             Spelare = strid(Spelare, Monster)
-
-        #         case "2":
-        #             print("du gick på en fälla")
-        #             Spelare = fälla()
-
-        #         case "3":
-        #             print("du stötte på en kista")
-        #             Spelare = kista()
-        #     return Spelare
 
 
 # _______________________________
@@ -197,7 +177,6 @@ def intro():
             print("du skrev fel")
             continue
 
-# FIXAAAAAAAAAAAAAAAAAAAAAAAA IMOIRRRRRRRRRRRRRRRRRRRRRRRGONNNNNNNNNNNNNNNNNNNNNNNNNnnnnnnn
 
     print(Spelare)
     return Spelare
@@ -206,15 +185,45 @@ def intro():
 # Strid/fight Funktioner ---------
 
 def strid(Spelare, Monster):
-    strid_val = (input(
-            'du öppnar dörren och stöter på ett monster, vad vill du göra?  | 1.slåss |  '))
+    strid_val = (input("""
+
+    DET ÄR DEN STORE DUNDER ARMIN
+    
+     _.--'''''--._
+   .'             '.
+  /                 \
+ ;                   ;
+ |                   |
+ |                   |
+ ;                   ;
+  \ (`'--,    ,--'`) /
+   \ \  _ )  ( _  / /
+    ) )(')/  \(')( (
+   (_ `""` /\ `""` _)
+    \`"-, /  \ ,-"`/
+     `\ / `""` \ /`
+      |/\/\/\/\/\|
+      |\        /|
+      ; |/\/\/\| ;
+       \`-`--`-`/
+        \      /
+         ',__,'
+          q__p
+          q__p
+          q__p
+          q__p
+
+          | 1 | Tryck för att slåss -
+    
+
+    """))
     if strid_val == "1":
         while Monster.hp > 0 and Spelare.hp > 0:
             val = (input("""
-            | 1 | SLÅ IGEN
+
+            | 1 | SLÅ
             | 2 | SPRING"""))
             if val == "1":
-                print(f"du valde valde strid {Monster}")
                 while True:
                     if Spelare.hp < 0:
                         exit()
@@ -224,7 +233,10 @@ def strid(Spelare, Monster):
                         return Spelare
                         
                     attack = input(
-                        """välj en attack
+                        """
+                        ________________
+                       | VÄLJ EN ATTACK |
+                       TTTTTTTTTTTTTTTTTT
                     ______________________________________   
                     |                   |                 |
                     | (1) Light attack  | (2)Heavy attack |
@@ -250,8 +262,8 @@ def strid(Spelare, Monster):
                 Spelare.hp -= Monster.styrka
                 print(f"Monstret träffade dig och du har {Spelare.hp} hp kvar")
             elif attack == "2":
-                crit_chans_spelare = random.uniform(0.7,2)
-                crit_chans_monster = random.uniform(0.8,1.7)
+                crit_chans_spelare = round(random.uniform(0.7,2),1)
+                crit_chans_monster = round(random.uniform(0.8,1.7),1)
                 Monster.hp -= Spelare.styrka * crit_chans_spelare
                 print(f"| Du träffade monstret och han har {Monster.hp} kvar. Du hade en damage multiplyer på {crit_chans_spelare}|")
                 Spelare.hp -= Monster.styrka * crit_chans_monster
@@ -267,9 +279,14 @@ def strid(Spelare, Monster):
                 elif hitrate == 2:
                     print("du duckade och monstret missade sin attack")
 
-        print("grattis")
-        print("du gick nu upp en level")
-        Spelare.level += 1
+        if Spelare.hp >= 0:
+            Spelare.level += 1
+            print("""Grattis, du vann och gick upp en level""")
+            print(f"Du är nu i level {Spelare.level}")
+        elif Spelare.hp <= 0:
+            print("Du dog")
+            print("Spelet avslutas")
+            exit()
 
     return Spelare
 
@@ -289,7 +306,6 @@ def fälla(Spelare):
 
 
 def kista(Spelare):
-
     items = ["HPotion"]
     print("Du stöter på en kista.")
     val_1 = input("TRYCK | 1 | för att öppna kistan")
@@ -309,7 +325,7 @@ def kista(Spelare):
             elif potion_val == "2":
                 print('ZZZIIIIIIIIIIIIPp... "lägger ner i ryggsäcken"')
                 Spelare.inventory.append("HPotion")
-            return Spelare
+    return Spelare
         # ---------------------------
         # elif randomitem == "SPotion":
         #     print("du fick en STRENGTH potion")
@@ -351,13 +367,19 @@ def meny(Spelare):
         meny_val = input()
 
         if meny_val == "1":
-            print("KOLLAR STATS")
+            print("""
+            STATS
+            """)
             stats(Spelare)
         elif meny_val == "2":
             print(Spelare.inventory)
             ta_potion(Spelare)
         elif meny_val == "3":
-            print("går vidare")
+            print("""
+
+            Fortsätter djupare in i grottan......
+            
+            """)
             break
         elif meny_val == "0":
             print("Spelet avslutas")
@@ -424,95 +446,37 @@ def main():
         dörr(Spelare)
         meny(Spelare)
 
-    print("DU VANN SPELAET")
-
+    
+    if Spelare.level > 2:
+        print("""
+.--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--.
+/ .. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \
+\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/ /
+ \/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /
+ / /\/ /`' /`' /`' /`' /`' /`' /`' /`' /`' /`' /`' /`' /`' /\/ /\
+/ /\ \/`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'\ \/\ \
+\ \/\ \                                                    /\ \/ /
+ \/ /\ \                                                  / /\/ /
+ / /\/ /                                                  \ \/ /\
+/ /\ \/               GRATTIS DU VANN SPELET               \ \/\ \
+\ \/\ \                                                    /\ \/ /
+ \/ /\ \                                                  / /\/ /
+ / /\/ /                                                  \ \/ /\
+/ /\ \/                                                    \ \/\ \
+\ \/\ \.--..--..--..--..--..--..--..--..--..--..--..--..--./\ \/ /
+ \/ /\/ ../ ../ ../ ../ ../ ../ ../ ../ ../ ../ ../ ../ ../ /\/ /
+ / /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\/ /\
+/ /\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \
+\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `'\ `' /
+ `--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'`--'
+        
+       
+        
+        """)
+        exit()
+    elif Spelare.hp <= 0: 
+        print("DU DOG OCH FÖRLORADE SPELET")
+        exit()
 
 main()
 
-# print("""
-# Längre in går du i grottan och stöter på tre dörrar,
-# Tryck | 1 | för att öppna vänstra dörren
-# Tryck | 2 | för dörren rakt fram &
-# Tryck | 3 | för att öppna höger
-# För att springa ut tryck | 0 |
-# """)
-
-# dörr_val = input("Vart vill du gå? -->")
-
-# if dörr_val == "0":
-#     print("Jag han ut; WHEWWWWW!")
-#     print("SPELET AVSLUTAS")
-#     exit()
-# else:
-#     random_dörr = random.choice(["fälla", "kista"])
-
-#     if random_dörr == "fälla":
-#         fälla(Spelare)
-#     elif random_dörr == "kista":
-#         kista(Spelare)
-
-
-# namn = input("Vad ska din gubbe heta? -->")
-
-# KaraktärVal = input("Ska din karaktär vara en [Krigare], [Trollkarl] eller [Ninja]")
-
-# KaraktärVal = KaraktärVal.lower()
-
-# if KaraktärVal == "krigare":
-#     spelare = Krigare(namn)
-# elif KaraktärVal == "trollkarl":
-#     spelare = Trollkarl(namn)
-# elif KaraktärVal == "ninja":
-#     spelare = Ninja(namn)
-# else:
-#     print("Du skrev fel")
-
-# print(spelare)
-
-
-# meny_val_1 = input("Klicka 1 om du vill gå vidare eller klicka 2 om du vill avsluta spelet. -->")
-# if meny_val_1 == "1":
-#     print(f"{spelare.namn} går vidare")
-# else:
-#     print("gå hem")
-
-# meny_val_2 = input("Vad vill göras? Vill du gå vidare till din första utmaning, KLICKA DÅ 1. Om du vill kolla dina stats, KLICKA DÅ 2, och om du vill avsluta spelet, KLICKA 0")
-# if meny_val_2 == "1":
-#     print("Du har stött på 3 plötsliga dörrar. Välj att antagligen att gå VÄNSTER, HÖGER eller FRAMMÅT?!" )
-#     vilken_dörr_1 = input("Vart vill du gå? -->")
-#     vilken_dörr_1 = vilken_dörr_1.lower()
-
-#     if vilken_dörr_1 == "vänster" or "höger" or "frammåt":
-#         print(f"Du har gått {vilken_dörr_1}")
-#         #lägg till kista och fälla
-#         bakom_dörren = "Monster"
-#         if bakom_dörren == "Monster":
-#             #Lägg till monster
-#             monster_dörr()
-
-#     print("next")
-
-
-# print(f"spelaren {spelare.namn} har {spelare.hp} hp kvar")
-
-
-# def fight(kar, mon):
-#     while spelare.hp > 0 or monster.hp
-
-# def monster_dörr():
-#     while True:
-#         print("AjAj ett storst monster dök upp?! Akta")
-#         monster_dörr_val = input("Vill du springa och är en pussy, TRYCK 1, annars om du är en riktig TOP G och vill fightas, TRYCK 2!")
-
-#         if monster_dörr_val == "1":
-#             print("din rotta, men spring för livet då?!")
-#             överlevnads_chans = random.randint(0,100)
-#             if överlevnads_chans > 50:
-#                 print("Du överlevde och klarade springa ifrån monstret.")
-#                 continue
-#             else:
-#                 print("du dog din sopa")
-#                 break
-#         elif monster_dörr_val == "2":
-#             print("TOP G stannar och fightar och inte flightar, hoppas du vinner dock!")
-#             strid(spelare, random.choice(Monster_Armin))
