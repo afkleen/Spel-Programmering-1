@@ -57,8 +57,8 @@ class Trollkarl():
     def __init__(self, namn):
         self.namn = namn
         self.styrka = 175
-        self.hp = 350
-        self.level = 1
+        self.hp = 375
+        self.level = 2
         self.inventory = ["INVENTORY:","HPotion","HPotion"]
         self.speed = 60
 
@@ -272,7 +272,7 @@ def strid(Spelare, Monster):
                 Spelare.hp -= Monster.styrka * crit_chans_monster
                 print(f"| {Monster} prickade dig och du har {Spelare.hp} kvar. Monstret hade en damage multiplyer på {crit_chans_monster}")
 
-            if Spelare.speed > 30:
+            if Spelare.speed > 30 and not attack == "2" or attack=="1":
 
                 hitrate = random.randint(1,2)
 
@@ -446,10 +446,8 @@ def main():
     while Spelare.level < 3 or Spelare.hp > 0:
         dörr(Spelare)
         meny(Spelare)
-
-    
-    if Spelare.level > 2:
-        print("""
+        if Spelare.level > 2:
+            print("""
 .--..--..--..--..--..--..--..--..--..--..--..--..--..--..--..--.
 / .. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \.. \
 \ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/\ \/ /
@@ -474,10 +472,10 @@ def main():
        
         
         """)
-        exit()
-    elif Spelare.hp <= 0: 
-        print("DU DOG OCH FÖRLORADE SPELET")
-        exit()
+            exit()
+        elif Spelare.hp <= 0: 
+            print("DU DOG OCH FÖRLORADE SPELET")
+            exit()
 
 main()
 
